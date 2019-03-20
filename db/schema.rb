@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -53,11 +62,42 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mods", force: :cascade do |t|
+    t.integer "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plans", force: :cascade do |t|
     t.integer "member_id"
     t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "mod_id"
+    t.integer "user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.date "year"
+    t.integer "population"
+    t.string "gender"
+    t.integer "hired"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "full_name"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "mod_id"
   end
 
   create_table "wishlists", force: :cascade do |t|
@@ -70,8 +110,13 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
   add_foreign_key "coupons", "members", column: "creator_id"
   add_foreign_key "like1s", "coupons"
   add_foreign_key "like1s", "members"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "plans", "events"
   add_foreign_key "plans", "members"
+  add_foreign_key "posts", "mods"
+  add_foreign_key "posts", "users"
+  add_foreign_key "users", "mods"
   add_foreign_key "wishlists", "coupons"
   add_foreign_key "wishlists", "members"
 end
