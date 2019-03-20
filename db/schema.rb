@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "diseases", force: :cascade do |t|
+    t.integer "year"
+    t.string "leading_cause"
+    t.string "sex"
+    t.string "race_ethnicity"
+    t.integer "deaths"
+    t.integer "death_rate"
+    t.integer "age_adjusted_death_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "event_name"
     t.date "event_date"

@@ -29,4 +29,13 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :diseases do
+    namespace :api do
+      namespace :v1 do
+        resources :diseases, only: %i[index show create update destroy]
+      end
+    end
+  end
+
 end
