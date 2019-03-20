@@ -8,7 +8,7 @@ class Femmecubator::Api::V1::MembersController < ApplicationController
         @member = Member.create(members_params)
         if @member.valid?
             @token = issue_token({ email: @member.email})
-            render json: { member: MemberSerializer.new(@member), jwt: @token }, status: :created
+            render json: { member: MembersSerializer.new(@member), jwt: @token }, status: :created
         else
             @registrationData = { first_name: members_params[:first_name], last_name: members_params[:last_name], email: members_params[:email]}
             render json: { member: @registrationData, error: 'Registration failed' }, status: :not_acceptable
@@ -20,7 +20,7 @@ class Femmecubator::Api::V1::MembersController < ApplicationController
         @member.update(members_params)
         @member.save
         @token = issue_token({ email: @member.email })
-        render json: { member: MemberSerializer.new(@member), jwt: @token }
+        render json: { member: MembersSerializer.new(@member), jwt: @token }
     end
 
     private

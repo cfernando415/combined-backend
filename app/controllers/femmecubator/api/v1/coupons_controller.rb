@@ -7,7 +7,7 @@ class Femmecubator::Api::V1::CouponsController < ApplicationController
     def create
         # byebug
         @coupon = Coupon.create(coupons_params)
-        render json: {coupon: CouponSerializer.new(@coupon)}
+        render json: {coupon: CouponsSerializer.new(@coupon)}
     end
 
     private
