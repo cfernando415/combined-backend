@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         resources :members
         resources :coupons
         resources :events
-        resources :likes
+        resources :like1s
         resources :plans
         get '/current_user', to: 'auth#show'
         post '/login', to: 'auth#create'

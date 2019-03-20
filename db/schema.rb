@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "likes", force: :cascade do |t|
+  create_table "like1s", force: :cascade do |t|
     t.integer "coupon_id"
     t.integer "member_id"
     t.datetime "created_at", null: false
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_010133) do
   end
 
   add_foreign_key "coupons", "members", column: "creator_id"
-  add_foreign_key "likes", "coupons"
-  add_foreign_key "likes", "members"
+  add_foreign_key "like1s", "coupons"
+  add_foreign_key "like1s", "members"
   add_foreign_key "plans", "events"
   add_foreign_key "plans", "members"
   add_foreign_key "wishlists", "coupons"
