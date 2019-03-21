@@ -4,11 +4,11 @@ class ApplicationController < ActionController::API
         JWT.encode(payload, '$ec123t')
     end 
 
-        def auth_header
+    def auth_header
         request.headers['Authorization']
-        end 
+    end 
 
-        def decoded_token
+    def decoded_token
         if auth_header
             token = auth_header
             begin 
@@ -17,23 +17,29 @@ class ApplicationController < ActionController::API
             nil 
             end 
         end 
-        end 
+    end 
 
-        def current_user 
+    def current_user
+        # byebug 
         if decoded_token
-            email = decoded_token[0]
-            @member = Member.find_by(email: email["email"])
+            if decoded_token[0].keys[0] == "email"
+                email = decoded_token[0]
+                @member = Member.find_by(email: email["email"])
+            else
+                full_name = decoded_token[0]['full_name']
+                @user = User.find_by(full_name: full_name)
+            end
         else
             nil
         end
-        end 
+    end 
 
-        def logged_in?
+    def logged_in?
         !!current_user
-        end
+    end
 
-        def authorized
+    def authorized
         # byebug
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-        end
+    end
 end

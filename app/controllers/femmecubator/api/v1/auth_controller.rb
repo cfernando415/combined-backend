@@ -4,6 +4,7 @@ class Femmecubator::Api::V1::AuthController < ApplicationController
         # byebug
         @member = Member.find_by(email: auth_params[:email])
         if @member && @member.authenticate(auth_params[:password])
+            # byebug
             @token = issue_token({ email: @member.email})
             render json: { member: MembersSerializer.new(@member), jwt: @token }, status: :accepted
         else

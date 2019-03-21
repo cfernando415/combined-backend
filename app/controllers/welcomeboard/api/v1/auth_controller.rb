@@ -6,7 +6,7 @@ class Welcomeboard::Api::V1::AuthController < ApplicationController
     # byebug
     @user = User.find_by(full_name: user_login_params[:full_name])
     if @user && @user.authenticate(user_login_params[:password])
-      @token = JWT.encode({ full_name: @user.full_name }, 'isd3nK')
+      @token = issue_token({ full_name: @user.full_name })
       # @token = encode_token({ user_id: @user.id })
       render json: { user: UserSerializer.new(@user), jwt: @token }, status: :accepted
     else
