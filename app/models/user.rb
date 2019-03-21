@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :full_name, uniqueness: { case_sensitive: false }
 
   belongs_to :mod
-  has_many :posts, dependent: :destroy
+  has_many :cposts, class_name: "Post", foreign_key: "user_id", dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :posts, through: :likes
+  has_many :lposts, through: :likes
 end

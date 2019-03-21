@@ -14,6 +14,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Disease.destroy_all
+Mod.destroy_all
+User.destroy_all
+
+Mod.create({ rank: 1 })
+Mod.create({ rank: 2 })
+Mod.create({ rank: 3 })
+Mod.create({ rank: 4 })
+Mod.create({ rank: 5 })
 
 Disease.create({year: 2012, leading_cause: "All Other Causes", sex: "M", race_ethnicity: "Not Stated/Unknown", deaths: 78, death_rate: 0, age_adjusted_death_rate: 0})
 Disease.create({year: 2014, leading_cause: "Diabetes Mellitus (E10-E14)", sex: "M", race_ethnicity: "Not Stated/Unknown", deaths: 8, death_rate: 0, age_adjusted_death_rate: 0})

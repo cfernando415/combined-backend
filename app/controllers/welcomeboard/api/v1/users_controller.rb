@@ -12,6 +12,7 @@ class Welcomeboard::Api::V1::UsersController < ApplicationController
     end
 
     def create
+        # byebug
         @user = User.create(full_name: params[:full_name], password: params[:password], mod_id: params[:mod_id])
         if @user.valid?
           @token = JWT.encode({full_name: @user.full_name}, 'isd3nK')
