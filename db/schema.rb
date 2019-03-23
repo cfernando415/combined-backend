@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_220334) do
+ActiveRecord::Schema.define(version: 2019_02_13_010133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,8 +120,6 @@ ActiveRecord::Schema.define(version: 2019_03_21_220334) do
   add_foreign_key "coupons", "members", column: "creator_id"
   add_foreign_key "like1s", "coupons"
   add_foreign_key "like1s", "members"
-  add_foreign_key "likes", "posts"
-  add_foreign_key "likes", "users"
   add_foreign_key "plans", "events"
   add_foreign_key "plans", "members"
   add_foreign_key "posts", "mods"
