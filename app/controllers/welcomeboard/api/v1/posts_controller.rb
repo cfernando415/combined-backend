@@ -6,7 +6,7 @@ class Welcomeboard::Api::V1::PostsController < ApplicationController
     end
 
     def create
-        byebug
+        # byebug
         @post = Post.create(post_params)
         render json: @post, status: :accepted
     end
