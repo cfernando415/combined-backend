@@ -15,7 +15,7 @@ class Welcomeboard::Api::V1::UsersController < ApplicationController
         # byebug
         @user = User.create(full_name: params[:full_name], password: params[:password], mod_id: params[:mod_id])
         if @user.valid?
-          @token = JWT.encode({full_name: @user.full_name}, 'isd3nK')
+          @token = issue_token({full_name: @user.full_name})
           render json: { user: @user, jwt: @token }, status: :created
         else
           render json: { error: 'failed to create user' }, status: :not_acceptable
